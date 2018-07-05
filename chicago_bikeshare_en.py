@@ -6,8 +6,6 @@ import csv
 import matplotlib.pyplot as plt
 from statistics import median, mean
 
-from lists import column_to_list_lazy, column_to_list
-
 # Let's read the data as a list
 print("Reading the document...")
 with open("chicago.csv", "r") as file_read:
@@ -59,6 +57,32 @@ for item in range(0, 20):
 # TASK 3
 # TODO: Create a function to add the columns(features) of a
 #  list in another list in the same order
+
+def column_to_list(data, index):
+    """
+    return the list of an column.
+      Args:
+          data: the data from the csv with an list for each line and the value is also a list.
+          index: the index for the column to be returned.
+      Returns:
+          return only the column specified from the input
+    """
+    # Tip: You can use a for to iterate over the samples,
+    # get the feature by index and append into a list
+    return [col_item[index] for col_item in data]
+
+def column_to_list_lazy(data, index):
+    """
+    generator with a specific index of a list inside another list
+      Args:
+          data: the data from the csv with an list for each line and the value is also a list.
+          index: the index for the column to be returned.
+      Returns:
+          yield a index specified from the input
+    """
+    for line in data:
+        yield line[index]
+
 # Let's check with the genders if it's working (only the first 20)
 print("\nTASK 3: Printing the list of genders of the first 20 samples")
 print(column_to_list(data_list, -2)[:20])
