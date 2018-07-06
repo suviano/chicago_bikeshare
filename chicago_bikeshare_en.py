@@ -4,7 +4,6 @@
 # Here goes the imports
 import csv
 import matplotlib.pyplot as plt
-from statistics import median, mean
 
 # Let's read the data as a list
 print("Reading the document...")
@@ -256,10 +255,18 @@ input("Press Enter to continue...")
 # TASK 9
 # TODO: Find the Minimum, Maximum, Mean and Median trip duration.
 # You should not use ready functions to do that, like max() or min().
+def median(items):
+    sorted_items = sorted(items)
+    list_size = len(sorted_items)
+    if list_size % 2 == 0:
+        return sorted_items[list_size/2]
+    else:
+        return sorted_items[list_size//2 + 1]
+
 trip_duration_list =[int(item) for item in  column_to_list(data_list, 2)]
 min_trip = min(trip_duration_list)
 max_trip = max(trip_duration_list)
-mean_trip = mean(trip_duration_list)
+mean_trip = float(sum(trip_duration_list)) / len(trip_duration_list)
 median_trip = median(trip_duration_list)
 
 print("\nTASK 9: Printing the min, max, mean and median")
