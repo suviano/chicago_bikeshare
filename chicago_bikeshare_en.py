@@ -255,18 +255,51 @@ input("Press Enter to continue...")
 # TASK 9
 # TODO: Find the Minimum, Maximum, Mean and Median trip duration.
 # You should not use ready functions to do that, like max() or min().
+
+
+def my_min(items):
+    result = 0
+    for index, item in enumerate(items):
+        if index == 0 or item < result:
+            result = item
+    return result
+
+
+def my_max(items):
+    result = 0
+    for index, item in enumerate(items):
+        if index == 0 or item > result:
+            result = item
+    return result
+
+
+def my_sum(items):
+    result = 0
+    for item in items:
+        result += int(item)
+    return result
+
+
+def my_len(items):
+    result = 0
+    for _ in items:
+        result += 1
+    return result
+
+
 def median(items):
     sorted_items = sorted(items)
-    list_size = len(sorted_items)
+    list_size = my_len(sorted_items)
     if list_size % 2 == 0:
-        return sorted_items[list_size/2]
+        return sorted_items[list_size / 2]
     else:
         return sorted_items[list_size//2 + 1]
 
-trip_duration_list =[int(item) for item in  column_to_list(data_list, 2)]
-min_trip = min(trip_duration_list)
-max_trip = max(trip_duration_list)
-mean_trip = float(sum(trip_duration_list)) / len(trip_duration_list)
+
+trip_duration_list = [int(item) for item in column_to_list(data_list, 2)]
+min_trip = my_min(trip_duration_list)
+max_trip = my_max(trip_duration_list)
+mean_trip = float(my_sum(trip_duration_list)) / my_len(trip_duration_list)
 median_trip = median(trip_duration_list)
 
 print("\nTASK 9: Printing the min, max, mean and median")
