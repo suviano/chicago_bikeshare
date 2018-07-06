@@ -45,8 +45,8 @@ input("Press Enter to continue...")
 # TODO: Print the `gender` of the first 20 rows
 
 print("\nTASK 2: Printing the genders of the first 20 samples")
-for item in range(0, 20):
-    print(data_list[item][6])
+for line in data_list[:20]:
+    print(line[6])
 
 # Cool! We can get the rows(samples) iterating with a for and the columns(features) by index.
 # But it's still hard to get a column in a list. Example: List with all genders
@@ -73,12 +73,12 @@ def column_to_list(data, index):
 
 def column_to_list_lazy(data, index):
     """
-    generator with a specific index of a list inside another list
+    generator to return an item in the column table.
       Args:
           data: the data from the csv with an list for each line and the value is also a list.
           index: the index for the column to be returned.
       Returns:
-          yield a index specified from the input
+          generator of only the column specified from the input
     """
     for line in data:
         yield line[index]
@@ -283,7 +283,7 @@ user_types = set()
 print("\nTASK 10: Printing start stations:")
 
 start_station_list = column_to_list(data_list, 3)
-[user_types.add(station_item) for station_item in start_station_list if station_item]
+user_types = set(start_station_list)
 
 print(len(user_types))
 print(user_types)
